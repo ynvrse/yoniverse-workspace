@@ -30,22 +30,22 @@ class ProjectResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Grid::make()
-                ->columns(3)
-                ->schema([
+                    ->columns(3)
+                    ->schema([
                         Select::make('workspace_id')
-                        ->relationship('workspace', 'name')
-                        ->required(),
+                            ->relationship('workspace', 'name')
+                            ->required(),
 
                         Select::make('status')
-                        ->options([
-                            'draft' => 'Draft',
-                            'in_progress' => 'In Progress',
-                            'on_review' => 'On Review',
-                            'completed' => 'Completed',
-                        ])->default('draft'),
+                            ->options([
+                                'draft' => 'Draft',
+                                'in_progress' => 'In Progress',
+                                'on_review' => 'On Review',
+                                'completed' => 'Completed',
+                            ])->default('draft'),
                         DatePicker::make('due_date')->required(),
 
-                ]),
+                    ]),
                 Forms\Components\Grid::make()
                     ->columns(2)
                     ->schema([
@@ -53,23 +53,22 @@ class ProjectResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Select::make('priority')
-                        ->options([
-                            'low' => 'Low',
-                            'medium' => 'Medium',
-                            'high' => 'High',
-                        ])->default('medium'),
+                            ->options([
+                                'low' => 'Low',
+                                'medium' => 'Medium',
+                                'high' => 'High',
+                            ])->default('medium'),
                     ]),
                 Forms\Components\Grid::make()
                     ->columns(1)
                     ->schema([
-                        
+
                         Textarea::make('description'),
-                  
+
                     ]),
-        
-                
-                ]);
-            
+
+
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -91,6 +90,7 @@ class ProjectResource extends Resource
                 ]),
             ])
             ->actions([
+
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
